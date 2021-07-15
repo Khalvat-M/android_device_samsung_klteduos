@@ -18,7 +18,6 @@ PRODUCT_MAKEFILES := \
 
 
 
-
 COMMON_LUNCH_CHOICES := \
     lineage_klteduos-user \
     lineage_klteduos-userdebug \

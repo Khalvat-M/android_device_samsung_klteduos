@@ -15,21 +15,16 @@
 # limitations under the License.
 #
 
+# If we're being sourced by the common script that we called,
+# stop right here. No need to go down the rabbit hole.
+if [ "${BASH_SOURCE[0]}" != "${0}" ]; then
+    return
+fi
+
 set -e
 
 export DEVICE=klteduos
-export DEVICE_COMMON=klteduos-common
+export DEVICE_COMMON=msm8974-common
 export VENDOR=samsung
-export DEVICE_BRINGUP_YEAR=2014
 
-./../../$VENDOR/$DEVICE_COMMON/extract-files.sh $@
-
-MY_DIR="${BASH_SOURCE%/*}"
-if [[ ! -d "$MY_DIR" ]]; then MY_DIR="$PWD"; fi
-
-CM_ROOT="$MY_DIR"/../../..
-DEVICE_BLOB_ROOT="$CM_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary
-
-for f in "$DEVICE_BLOB_ROOT"/vendor/lib/libsec-ril.*; do
-  sed -i 's|libprotobuf-cpp-full|libprotobuf-cpp-haxx|g' "$f"
-done
+"./../../${VENDOR}/${DEVICE_COMMON}/extract-files.sh" "$@"

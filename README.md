@@ -1,6 +1,6 @@
-Copyright 2020 - The Khavat-M Project
+Copyright 2020 - The Khalvat-M project
 
-Device configuration for Samsung Galaxy S5 Dual-SIM variants (SM-G900FD, SM-G900MD).
+Device configuration for Samsung Galaxy S5 Unified variants (SM-G900F, SM-G900M, SM-G900R4, SM-G900R7, SM-G900T, SM-G900V, SM-G900W8, SM-S902L).
 ========================================
 
 Basic   | Specification List
@@ -17,39 +17,40 @@ Dimensions | 142 x 72.5 x 8.1 mm (5.59 x 2.85 x 0.32 in)
 Display | 1080 x 1920 pixels, 5.1"
 Rear Camera  | 16 MP, f/2.2, 31mm, phase detection autofocus, LED flash
 Front Camera | 2 MP, f/2.4, 22mm
-Release Date | June 2014
+Release Date | February 2014
 
-![Galaxy S5](https://github.com/Khalvat-M/android_device_samsung_klteduos/blob/11.0/information/klteduos.gif)
+![Galaxy S5](https://github.com/Khalvat-M/android_device_samsung_klte/blob/11.0/information/klteduos.gif)
 
 
 # For building Android R
 ### create `.repo/local_manifests/roomservice.xml` with the following content:
 
 ***
- 
-        <?xml version="1.0" encoding="UTF-8"?>
-           <manifest>
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+ <manifest>
         
-           <remote  name="khalvat"
-              fetch="https://github.com/Khalvat-M"
-              revision="11.0" />
+ <remote  name="khalvat"
+    fetch="https://github.com/Khalvat-M"
+    revision="11.0" />
 
-           <remote  name="linos"
-              fetch="https://github.com/LineageOS"
-              revision="lineage-18.0" />
+ <remote  name="linos"
+    fetch="https://github.com/LineageOS"
+    revision="lineage-18.1" />
 
-              <!--LineageOS -->
-              <project name="android_hardware_samsung" path="hardware/samsung" remote="linos" />
-              <project name="android_hardware_sony_timekeep" path="hardware/sony/timekeep" remote="linos"/>
+    <!--LineageOS -->
+    <project name="android_hardware_samsung" path="hardware/samsung" remote="linos" />
+    <project name="android_hardware_sony_timekeep" path="hardware/sony/timekeep" remote="linos"/>
         
-              <!--Device -->
-              <project name="android_device_samsung_klteduos" path="device/samsung/klteduos" remote="khalvat" />
-              <project name="android_device_samsung_klteduos-common" path="device/samsung/klteduos-common" remote="khalvat" />
+    <!--Device -->
+    <project name="device_samsung_klte" path="device/samsung/klte" remote="khalvat" />
+    <project name="device_samsung_msm8974-common" path="device/samsung/msm8974-common" remote="khalvat" />
            
-              <!--Kernel -->
-              <project name="kernel_samsung_msm8974" path="kernel/samsung/msm8974" remote="khalvat" />
+    <!--Kernel -->
+    <project name="kernel_samsung_msm8974" path="kernel/samsung/msm8974" remote="khalvat" />
     
-              <!--Vendor -->
-              <project name="vendor_samsung" path="vendor/samsung" remote="khalvat" />
+    <!--Vendor -->
+    <project name="vendor_samsung" path="vendor/samsung" remote="khalvat" />
                   
-           </manifest>
+ </manifest>
+```

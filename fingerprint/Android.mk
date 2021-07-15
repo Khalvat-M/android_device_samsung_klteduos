@@ -1,6 +1,6 @@
-#!/bin/bash
 #
-# Copyright (C) 2020 The Lineage OS Project
+# Copyright (C) 2016 The Mokee Project
+# Copyright (C) 2016 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,10 +15,26 @@
 # limitations under the License.
 #
 
-set -e
+LOCAL_PATH := $(call my-dir)
 
-export DEVICE=klteduos
-export DEVICE_COMMON=msm8974-common
-export VENDOR=samsung
+include $(CLEAR_VARS)
 
-"./../../${VENDOR}/${DEVICE_COMMON}/setup-makefiles.sh" "$@"
+LOCAL_MODULE := fingerprint.msm8974
+LOCAL_MODULE_RELATIVE_PATH := hw
+LOCAL_SRC_FILES := \
+    fingerprint.c \
+    fingerprint_tz.c \
+    QSEEComAPI.c \
+    hash.c
+
+LOCAL_C_INCLUDES += \
+    external/sqlite/dist
+
+LOCAL_SHARED_LIBRARIES := \
+        liblog \
+        libsqlite
+
+LOCAL_MODULE_TAGS := optional
+LOCAL_PROPRIETARY_MODULE := true
+
+include $(BUILD_SHARED_LIBRARY)
